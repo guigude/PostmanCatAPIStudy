@@ -1,0 +1,302 @@
+{
+	"info": {
+		"_postman_id": "c9eaa047-435d-443b-82c5-7c7878533b07",
+		"name": "DesafioCatApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22852785"
+	},
+	"item": [
+		{
+			"name": "CriandoFavorito",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json();",
+							"pm.environment.set('FavoriteID', response.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"image_id\":\"26\",\n    \"sub_id\":\"optional unique id of your user\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URLdeBusca}}/favourites",
+					"host": [
+						"{{URLdeBusca}}"
+					],
+					"path": [
+						"favourites"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpVote",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"image_id\":\"53\",\n    \"sub_id\":\"optional unique id of your user\",\n    \"value\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.thecatapi.com/v1/votes",
+					"protocol": "https",
+					"host": [
+						"api",
+						"thecatapi",
+						"com"
+					],
+					"path": [
+						"v1",
+						"votes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DownVote",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"image_id\":\"3\",\n    \"sub_id\":\"optional unique id of your user\",\n    \"value\": -1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.thecatapi.com/v1/votes",
+					"protocol": "https",
+					"host": [
+						"api",
+						"thecatapi",
+						"com"
+					],
+					"path": [
+						"v1",
+						"votes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BuscarImagensGatos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Verificar se tem a quantidade pedida de imagens.",
+							"var data = pm.response.json(); //Em var data eu pego a resposta e transformo em objeto json.",
+							"var NumeroGatos = pm.environment.get(\"NumeroGatos\"); //Postman esta pegando do environment o valor da variavel \"NumeroGatos\".",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test('Verificar Quantidade Retornada', function () { //Primeiro parametro da função é o nome e o segundo é a função que vai ser executada!",
+							"    pm.expect(data.length).to.equal(+NumeroGatos); //postman expera o tamanho da data.",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "live_Ry8VhPAYn4Y9lPLhk9YAgSqXBX2WyoCNehHfPgKCklM6E3a81VIbOvXpNAFLs45L",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{URLdeBusca}}/images/search?limit={{NumeroGatos}}",
+					"host": [
+						"{{URLdeBusca}}"
+					],
+					"path": [
+						"images",
+						"search"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "{{NumeroGatos}}"
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "InformaçãoSobreRaças",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URLdeBusca}}/breeds",
+					"host": [
+						"{{URLdeBusca}}"
+					],
+					"path": [
+						"breeds"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "InformaçãoDeCategoria",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URLdeBusca}}/categories",
+					"host": [
+						"{{URLdeBusca}}"
+					],
+					"path": [
+						"categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BuscandoFavorito",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URLdeBusca}}/favourites?image_id=15",
+					"host": [
+						"{{URLdeBusca}}"
+					],
+					"path": [
+						"favourites"
+					],
+					"query": [
+						{
+							"key": "image_id",
+							"value": "15"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeletarFavorito",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://api.thecatapi.com/v1/favourites/:favouriteId",
+					"protocol": "https",
+					"host": [
+						"api",
+						"thecatapi",
+						"com"
+					],
+					"path": [
+						"v1",
+						"favourites",
+						":favouriteId"
+					],
+					"variable": [
+						{
+							"key": "favouriteId",
+							"value": "{{FavoriteID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "in",
+				"value": "query",
+				"type": "string"
+			},
+			{
+				"key": "value",
+				"value": "live_Ry8VhPAYn4Y9lPLhk9YAgSqXBX2WyoCNehHfPgKCklM6E3a81VIbOvXpNAFLs45L\n\n",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "api_key",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
