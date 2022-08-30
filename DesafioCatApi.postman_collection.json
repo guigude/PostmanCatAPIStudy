@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c9eaa047-435d-443b-82c5-7c7878533b07",
+		"_postman_id": "39003bc5-cec6-4103-86dd-c7b2f630f135",
 		"name": "DesafioCatApi",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "22852785"
@@ -72,15 +72,11 @@
 					}
 				},
 				"url": {
-					"raw": "https://api.thecatapi.com/v1/votes",
-					"protocol": "https",
+					"raw": "{{URLdeBusca}}/votes",
 					"host": [
-						"api",
-						"thecatapi",
-						"com"
+						"{{URLdeBusca}}"
 					],
 					"path": [
-						"v1",
 						"votes"
 					]
 				}
@@ -102,15 +98,11 @@
 					}
 				},
 				"url": {
-					"raw": "https://api.thecatapi.com/v1/votes",
-					"protocol": "https",
+					"raw": "{{URLdeBusca}}/votes",
 					"host": [
-						"api",
-						"thecatapi",
-						"com"
+						"{{URLdeBusca}}"
 					],
 					"path": [
-						"v1",
 						"votes"
 					]
 				}
